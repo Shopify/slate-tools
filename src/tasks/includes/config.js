@@ -40,6 +40,7 @@ try {
  */
 const config = {
   environment: gutil.env.environments || 'development',
+  themeRoot,
   packageJson: pkg,
   enableLinting: false,
 
