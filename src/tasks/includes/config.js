@@ -1,12 +1,16 @@
 const join = require('path').join;
+const logger = require('debug')('slate-tools');
+const findRoot = require('find-root');
 const gutil = require('gulp-util');
+
+const themeRoot = findRoot(process.cwd());
 
 let pkg = {};
 
 try {
-  pkg = require(join(process.cwd(), 'package.json'));
+  pkg = require(join(themeRoot, 'package.json'));
 } catch (err) {
-  console.error(err);
+  logger(err);
 }
 
 /**
