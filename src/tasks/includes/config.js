@@ -1,4 +1,13 @@
+const join = require('path').join;
 const gutil = require('gulp-util');
+
+let pkg = {};
+
+try {
+  pkg = require(join(process.cwd(), 'package.json'));
+} catch (err) {
+  console.error(err);
+}
 
 /**
  * slate-cli configuration object
@@ -27,6 +36,7 @@ const gutil = require('gulp-util');
  */
 const config = {
   environment: gutil.env.environments || 'development',
+  packageJson: pkg,
   enableLinting: false,
 
   tkConfig: 'config.yml',
