@@ -1,8 +1,10 @@
+const join = require('path').join;
 const gulp = require('gulp');
 const gutil = require('gulp-util');
 const debug = require('debug')('slate-tools');
 const argv = require('yargs').argv;
 const runSequence = require('run-sequence');
+const config = require('./tasks/includes/config');
 
 if (argv.environment && argv.environment !== 'undefined') {
   debug(`setting tkEnvironments to ${argv.environment}`);
@@ -12,12 +14,30 @@ if (argv.environment && argv.environment !== 'undefined') {
 // imports gulp tasks from the `tasks` directory
 require('require-dir')('./tasks');
 
+try {
+  require('require-dir')(join(config.themeRoot, 'tasks'));
+} catch (err) {
+  debug(err);
+  console.log('No additional tasks to load from theme.');
+}
+
 gulp.task('build', (done) => {
-  runSequence(
+  const tasks = [
     ['clean'],
     ['build:js', 'build:vendor-js', 'build:css', 'build:assets', 'build:config', 'build:svg'],
-    done,
-  );
+  ];
+
+  if (gulp.tasks['pre-build']) {
+    tasks.unshift('pre-build');
+  }
+
+  if (gulp.tasks && gulp.tasks['post-build']) {
+    tasks.push('post-build');
+  }
+
+  tasks.push(done);
+
+  runSequence.apply(this, tasks);
 });
 
 /**
