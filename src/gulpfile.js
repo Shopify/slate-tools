@@ -18,7 +18,7 @@ try {
   require('require-dir')(join(config.themeRoot, 'tasks'));
 } catch (err) {
   debug(err);
-  console.log('No additional tasks to load from theme.');
+  console.error('No additional tasks to load from theme.');
 }
 
 gulp.task('build', (done) => {
