@@ -1,10 +1,8 @@
-const join = require('path').join;
 const gulp = require('gulp');
 const gutil = require('gulp-util');
 const debug = require('debug')('slate-tools');
 const argv = require('yargs').argv;
 const runSequence = require('run-sequence');
-const config = require('./tasks/includes/config');
 
 if (argv.environment && argv.environment !== 'undefined') {
   debug(`setting tkEnvironments to ${argv.environment}`);
@@ -13,13 +11,7 @@ if (argv.environment && argv.environment !== 'undefined') {
 
 // imports gulp tasks from the `tasks` directory
 require('require-dir')('./tasks');
-
-try {
-  require('require-dir')(join(config.themeRoot, 'tasks'));
-} catch (err) {
-  debug(err);
-  console.error('No additional tasks to load from theme.');
-}
+require('./slate-load-plugins')();
 
 gulp.task('build', (done) => {
   const tasks = [
