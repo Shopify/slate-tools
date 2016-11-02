@@ -11,22 +11,53 @@ if (argv.environment && argv.environment !== 'undefined') {
 
 // imports gulp tasks from the `tasks` directory
 require('require-dir')('./tasks');
-require('./slate-load-plugins')();
+
+const plugins = [
+  require('require-dir')('./plugins'),
+  require('./slate-load-plugins')(),
+];
+
+const taskFuncs = {
+  preBuild: [],
+  postBuild: [],
+};
+
+const taskNames = {
+  preBuild: [],
+  postBuild: [],
+};
+
+plugins.forEach((group) => {
+  Object.keys(group).forEach((plugin) => {
+    Object.keys(group[plugin]).forEach((type) => {
+      taskFuncs[type].push(plugin.type);
+    });
+  });
+});
+
+Object.keys(taskFuncs).forEach((taskName) => {
+  if (taskFuncs[taskName].length) {
+    taskFuncs[taskName].forEach((taskFn, i) => {
+      gulp.task(taskName + i, taskFn);
+      taskNames[taskName].push(taskName + i);
+    });
+  }
+});
 
 gulp.task('build', (done) => {
-  const tasks = [
-    ['clean'],
+  let tasks = [
     ['build:js', 'build:vendor-js', 'build:css', 'build:assets', 'build:config', 'build:svg'],
   ];
 
-  if (gulp.tasks['pre-build']) {
-    tasks.unshift('pre-build');
+  if (taskNames.preBuild.length) {
+    tasks.unshift(taskNames.preBuild);
   }
 
-  if (gulp.tasks && gulp.tasks['post-build']) {
-    tasks.push('post-build');
+  if (taskNames.postBuild.length) {
+    tasks.push(taskNames.postBuild);
   }
 
+  tasks.unshift(['clean']);
   tasks.push(done);
 
   runSequence.apply(this, tasks);
