@@ -12,7 +12,6 @@
     "@shopify/themekit": "0.4.7",
     "bluebird": "3.4.0",
     "chokidar": "1.5.2",
-    "commander": "2.9.0",
     "cross-spawn": "5.0.0",
     "debug": "2.2.0",
     "del": "2.2.0",
