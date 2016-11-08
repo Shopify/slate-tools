@@ -8,7 +8,7 @@ export default function(program) {
   program
     .command('deploy')
     .alias('d')
-    .description('Build theme and replace theme files on specified environment(s).')
+    .description('Build and replace theme on specified environment(s).')
     .option('-e, --environment [environment]', 'deploy to a comma-separated list of environments', 'development')
     .option('-m, --manual', 'disable auto-deployment of the theme files')
     .action((options = {}) => {

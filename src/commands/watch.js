@@ -8,7 +8,7 @@ export default function(program) {
   program
     .command('watch')
     .alias('w')
-    .description('Watch for file changes and upload changed files on specified environment.')
+    .description('Watch for file changes and upload changes to specified environment.')
     .option('-e, --environment [environment]', 'deploy to a comma-separated list of environments', 'development')
     .action((options = {}) => {
       logger(`--gulpfile ${config.gulpFile}`);
