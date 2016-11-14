@@ -7,8 +7,7 @@ const logger = debug('slate-tools:build');
 export default function(program) {
   program
     .command('build')
-    .alias('b')
-    .description('Compile theme files and assets into a Shopify theme, found in the `dist` folder. No files will be uploaded to your shop.')
+    .description('Compiles raw Slate code from <theme>/src/ into the theme format required by a Shopify store (<theme>/dist/).')
     .action(() => {
       logger(`--gulpfile ${config.gulpFile}`);
       logger(`--cwd ${config.themeRoot}`);
