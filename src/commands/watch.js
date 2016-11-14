@@ -9,12 +9,12 @@ export default function(program) {
     .command('watch')
     .alias('w')
     .description('Set up the watchers for all theme assets and deploy the compiled versions to your specified environment.')
-    .option('-e, --environment [environment]', 'deploy to a comma-separated list of environments', 'development')
+    .option('-e, --env [environment]', 'deploy to a comma-separated list of environments', 'development')
     .action((options = {}) => {
       logger(`--gulpfile ${config.gulpFile}`);
       logger(`--cwd ${config.themeRoot}`);
 
-      const args = ['watch', '--gulpfile', config.gulpFile, '--cwd', config.themeRoot, '--environment', options.environment];
+      const args = ['watch', '--gulpfile', config.gulpFile, '--cwd', config.themeRoot, '--env', options.environment];
 
       if (options.nosync) {
         args.push('--nosync');

@@ -8,14 +8,15 @@ export default function(program) {
   program
     .command('deploy')
     .alias('d')
-    .description('Build and replace theme on specified environment(s).')
-    .option('-e, --environment [environment]', 'deploy to a comma-separated list of environments', 'development')
-    .option('-m, --manual', 'disable auto-deployment of the theme files, manually upload newly created zip file')
+    .description('Builds your theme and uploads the theme to the store(s) set by the environments(s) in your config.yml.')
+    .option('-e, --env [environment]', 'deploy to a comma-separated list of environments', 'development')
+    .option('-m, --manual', `disable auto-deployment of the theme files,
+    you need to manually upload the newly created zip file`)
     .action((options = {}) => {
       logger(`--gulpfile ${config.gulpFile}`);
       logger(`--cwd ${config.themeRoot}`);
 
-      const args = options.manual ? ['deploy:manual'] : ['deploy', '--environment', options.environment];
+      const args = options.manual ? ['deploy:manual'] : ['deploy', '--env', options.environment];
 
       spawn(config.gulp, args.concat(['--gulpfile', config.gulpFile, '--cwd', config.themeRoot]), {
         detached: false,
