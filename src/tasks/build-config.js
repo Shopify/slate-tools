@@ -11,11 +11,10 @@ const messages = require('./includes/messages.js');
 function processConfig(file) {
   messages.logProcessFiles('build:config');
 
-  fs.access(file, (err) => {
-    if (err) {
-      throw new Error(messages.configError());
-    }
-  });
+  // eslint-disable-next-line no-sync, node/no-deprecated-api
+  if (!fs.existsSync(file)) {
+    throw new Error(messages.configError());
+  }
 
   return gulp.src(file)
     .pipe(plumber(utils.errorHandler))
