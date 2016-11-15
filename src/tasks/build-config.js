@@ -1,4 +1,5 @@
 const gulp = require('gulp');
+const fs = require('fs');
 const plumber = require('gulp-plumber');
 const size = require('gulp-size');
 const chokidar = require('chokidar');
@@ -9,6 +10,12 @@ const messages = require('./includes/messages.js');
 
 function processConfig(file) {
   messages.logProcessFiles('build:config');
+
+  fs.access(file, (err) => {
+    if (err) {
+      throw new Error(messages.configError());
+    }
+  });
 
   return gulp.src(file)
     .pipe(plumber(utils.errorHandler))
