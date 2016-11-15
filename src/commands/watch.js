@@ -8,9 +8,9 @@ export default function(program) {
   program
     .command('watch')
     .alias('w')
-    .description('Runs a set of file watchers that monitor for code changes, and immediately deploy updates to your store as they happen. ' +
-      'By default, this command also runs a live-reload proxy that refreshes your store URL in-browser whenever new changes are deployed.')
-    .option('-e, --environment <env>[,<env>...]', 'Shopify store(s) to deploy code to (specified in config.yml - default: development)', 'development')
+    .description('Watches files for code changes and immediately deploys updates to your store as they occur. ' +
+      'By default, this command also runs a live-reload proxy that refreshes your store URL in-browser when changes are successfully deployed.')
+    .option('-e, --env <environment>', 'Shopify store to deploy code to (specified in config.yml - default: development)', 'development')
     .option('-n, --nosync', 'disable live-reload functionality')
     .action((options = {}) => {
       logger(`--gulpfile ${config.gulpFile}`);

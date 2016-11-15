@@ -10,7 +10,7 @@ export default function(program) {
     .alias('s')
     .description('Runs a clean build & deploy of the theme\'s source files to a Shopify store specified in config.yml, ' +
       'then starts file watch and live-reload tasks, allowing for immediate updates during development.')
-    .option('-e, --environment <env>[,<env>...]', 'Shopify store(s) to deploy code to (specified in config.yml - default: development)', 'development')
+    .option('-e, --env <environment>[,<environment>...]', 'Shopify store(s) to deploy code to (specified in config.yml - default: development)', 'development')
     .action((options = {}) => {
       logger(`--gulpfile ${config.gulpFile}`);
       logger(`--cwd ${config.themeRoot}`);
