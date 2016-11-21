@@ -19,7 +19,7 @@ gulp.task('deploy:sync-init', () => {
   if (browserSync.active) {
     browserSync.exit();
   } else {
-    fs.writeFile(config.deployLog, '');
+    fs.writeFileSync(config.deployLog, ''); // eslint-disable-line no-sync
   }
 
   const file = fs.readFileSync(config.tkConfig, 'utf8'); // eslint-disable-line no-sync
