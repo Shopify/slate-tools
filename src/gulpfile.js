@@ -11,13 +11,25 @@ if (argv.environment && argv.environment !== 'undefined') {
 
 // imports gulp tasks from the `tasks` directory
 require('require-dir')('./tasks');
+require('./slate-load-plugins')();
 
 gulp.task('build', (done) => {
-  runSequence(
+  const tasks = [
     ['clean'],
     ['build:js', 'build:vendor-js', 'build:css', 'build:assets', 'build:config', 'build:svg'],
-    done,
-  );
+  ];
+
+  if (gulp.tasks['pre-build']) {
+    tasks.unshift('pre-build');
+  }
+
+  if (gulp.tasks && gulp.tasks['post-build']) {
+    tasks.push('post-build');
+  }
+
+  tasks.push(done);
+
+  runSequence.apply(this, tasks);
 });
 
 gulp.task('build:zip', (done) => {
