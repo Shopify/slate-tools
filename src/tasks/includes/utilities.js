@@ -61,8 +61,7 @@ const utilities = {
    * @memberof slate-cli.utilities
    * @param {Error} err
    */
-  // eslint-disable-next-line babel/object-shorthand
-  errorHandler: function(err) {
+  errorHandler: function(err) { // eslint-disable-line babel/object-shorthand
     gutil.log(gutil.colors.red(err));
     this.emit('end');
   },
@@ -146,8 +145,7 @@ const utilities = {
    * @returns {eventCache} see type definition for more robust documentation
    */
   createEventCache: (options) => {
-    // eslint-disable-next-line no-param-reassign
-    _.defaults(options = options || {}, {
+    _.defaults(options = options || {}, { // eslint-disable-line no-param-reassign
       changeEvents: ['add', 'change'],
       unlinkEvents: ['unlink'],
     });
@@ -174,8 +172,7 @@ const utilities = {
        * @param {String} event - chokidar event type - only cares about `(add|change|unlink)`
        * @param {String} path - relative path to file passed via event
        */
-      // eslint-disable-next-line babel/object-shorthand
-      addEvent: function(event, path) {
+      addEvent: function(event, path) { // eslint-disable-line babel/object-shorthand
         _.each(options.changeEvents, (eventType) => {
           if (event === eventType) {
             this.change.push(path);
