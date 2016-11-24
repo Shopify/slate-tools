@@ -1,5 +1,5 @@
 import {join, normalize} from 'path';
-import fs from 'fs';
+import existsSync from 'fs';
 import findRoot from 'find-root';
 
 const workingDirectory = process.cwd();
@@ -15,8 +15,8 @@ const config = {
 };
 
 function resolveBinaryPath(file) {
-  if (fs.existsSync(file)) {
-    return join(themeRoot, normalize('node_modules/.bin/gulp'));
+  if (existsSync(file)) {
+    return defaultPath;
   } else {
     return join(themeRoot, normalize('node_modules/@shopify/slate-tools/node_modules/.bin/gulp'));
   }
