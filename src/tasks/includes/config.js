@@ -51,9 +51,9 @@ const config = {
     js: 'src/scripts/**/*.{js,js.liquid}',
     vendorJs: 'src/scripts/vendor/*.js',
     json: 'src/**/*.json',
-    css: 'src/styles/**/*.{scss,scss.liquid}',
-    cssLint: 'src/styles/**/*.scss',
-    vendorCss: 'src/styles/vendor/*.scss',
+    css: 'src/styles/**/*.{css,scss,scss.liquid}',
+    cssLint: 'src/styles/**/*.{css,scss}',
+    vendorCss: 'src/styles/vendor/*.{css,scss}',
     assets: 'src/assets/**/*',
     icons: 'src/icons/**/*.svg',
     templates: 'src/templates/**/*',
@@ -77,7 +77,7 @@ const config = {
   roots: {
     js: 'src/scripts/*.{js,js.liquid}',
     vendorJs: 'src/scripts/vendor.js',
-    css: 'src/styles/*.scss',
+    css: 'src/styles/*.{css,scss}',
   },
 
   plugins: {
