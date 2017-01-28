@@ -10,6 +10,7 @@ const utils = require('./includes/utilities.js');
 const messages = require('./includes/messages.js');
 
 const cache = utils.createEventCache();
+const environment = config.environment.split(/\s*,\s*|\s+/)[0];
 // prevent early execution on multi-file events
 const debouncedDeployStatus = _.debounce(checkDeployStatus, 320);
 
@@ -24,10 +25,6 @@ function checkDeployStatus() {
   if (activeDeploy) {
     return;
   }
-
-  const environment = config.environment.split(/\s*,\s*|\s+/)[0];
-
-  messages.deployTo(environment);
 
   if (cache.change.length) {
     deploy('upload', cache.change, environment);
@@ -68,6 +65,10 @@ function deploy(cmd, files, env) {
   }).then(() => {
     activeDeploy = false;
     fs.appendFileSync(config.deployLog, messages.logDeploys(cmd, files)); // eslint-disable-line no-sync
+    return checkDeployStatus();
+  }).catch((err) => {
+    activeDeploy = false;
+    messages.logTransferFailed(err);
     return checkDeployStatus();
   });
 }
@@ -110,6 +111,7 @@ gulp.task('watch:dist', () => {
   watcher.on('all', (event, path) => {
     messages.logFileEvent(event, path);
     cache.addEvent(event, path);
+    messages.deployTo(environment); 
     debouncedDeployStatus();
   });
 });

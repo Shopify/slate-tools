@@ -32,6 +32,8 @@ function deploy(env) {
         resolve();
       }
     });
+  }).catch((err) => {
+    messages.logTransferFailed(err);
   });
 }
 
