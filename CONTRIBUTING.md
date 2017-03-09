@@ -34,3 +34,39 @@ If your change affects how people use the project (i.e. adding or
 changing arguments to a function, adding a new function, changing the
 return value, etc), please ensure the documentation is also updated to
 reflect this. Documentation is in the `README.md` if further documentation is needed please communicate via Github Issues.
+
+## Testing locally
+
+If you are working on a PR and want to test your changes in a project, that project will need to have a symlink (symbolic link) to your local `slate-tools` repo.
+
+### Linking your repo
+
+#### `npm link`
+
+Navigate to the project folder and use `npm link` to create a symlink to the local repo. 
+
+```sh
+project $ npm link PATH/slate-tools
+# subsitute PATH for the appropriate parent directory
+```
+
+The output will be something like:
+```
+/user/.../project/node_modules/@shopify/slate-tools -> /user/.../lib/node_modules/@shopify/slate-tools -> /user/.../slate-tools
+```
+
+Your editor may show a new icon to show it is linked.  Check under `node_modules/@shopify`
+
+![http://take.ms/W6hB2](http://take.ms/W6hB2)
+
+#### `npm start`
+
+In the `slate-tools` directory, run `npm start`.   This will watch `slate-tools` for changes and transpile JS using babel.
+
+```sh
+slate-tools $ npm start
+```
+
+### Unlinking your repo
+
+To unlink the project from your local repo, delete the `node_modules` directory.  The next time you run `npm install` it will no longer be linked.
