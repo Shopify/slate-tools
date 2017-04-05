@@ -39,6 +39,24 @@ const utilities = {
     }).thenReturn(results).all();
   },
 
+  validateThemeId: (themeId) => {
+    // Only string allowed is "live"
+    if (themeId === "live") {
+      return true;
+    }
+
+    try {
+      const id = Number(themeId);
+      if(isNaN(id)) {
+        throw false;
+      } else {
+        return id;
+      }
+    }
+    catch(err) {
+      return err;
+    }
+  },
   /**
    * Checks whether the path is a directory
    *

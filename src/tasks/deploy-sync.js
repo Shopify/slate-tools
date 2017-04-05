@@ -5,6 +5,7 @@ const yaml = require('js-yaml');
 const debug = require('debug')('slate-tools:deploy');
 
 const config = require('./includes/config.js');
+const utils = require('./includes/utilities.js');
 const messages = require('./includes/messages.js');
 
 /**
@@ -28,10 +29,16 @@ gulp.task('deploy:sync-init', () => {
   const environment = config.environment.split(/\s*,\s*|\s+/)[0];
 
   const envObj = tkConfig[environment];
+  const valid_id = utils.validateThemeId(envObj.theme_id);
   let proxyTarget = `https://${envObj.store}`;
 
-  if (envObj.theme_id && (envObj.theme_id === parseInt(envObj.theme_id, 10))) {
-    proxyTarget += `?preview_theme_id=${envObj.theme_id}`;
+  if (!valid_id) {
+    messages.invalidThemeId(envObj.theme_id, environment);
+    process.exit();
+  }
+
+  if (valid_id && typeof(valid_id) === "number") {
+    proxyTarget += `?preview_theme_id=${valid_id}`;
   }
 
   debug(proxyTarget);

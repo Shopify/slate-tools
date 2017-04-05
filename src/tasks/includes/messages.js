@@ -73,6 +73,13 @@ const messages = {
       ' and run a full <slate deploy> as a result.';
   },
 
+  invalidThemeId: (theme_id, env) => {
+    gutil.log(`Invalid ID: `,
+      gutil.colors.cyan(`${env}: ${theme_id} `),
+      gutil.colors.yellow(`\`theme_id\` must be an integer or "live".`)
+    );
+  },
+
   configError: () => {
     return '`config.yml` does not exist. You need to add a config file before you can upload your theme to Shopify.';
   },
