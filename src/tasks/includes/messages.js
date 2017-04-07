@@ -73,9 +73,9 @@ const messages = {
       ' and run a full <slate deploy> as a result.';
   },
 
-  invalidThemeId: (theme_id, env) => {
-    gutil.log(`Invalid ID: `,
-      gutil.colors.cyan(`${env}: ${theme_id} `),
+  invalidThemeId: (themeId, env) => {
+    gutil.log(`Invalid theme id for`,
+      gutil.colors.cyan(`${env}: ${themeId}`),
       gutil.colors.yellow(`\`theme_id\` must be an integer or "live".`)
     );
   },

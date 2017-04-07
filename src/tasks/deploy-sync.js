@@ -29,17 +29,11 @@ gulp.task('deploy:sync-init', () => {
   const environment = config.environment.split(/\s*,\s*|\s+/)[0];
 
   const envObj = tkConfig[environment];
-  const valid_id = utils.validateThemeId(envObj.theme_id);
   let proxyTarget = `https://${envObj.store}`;
 
-  if (!valid_id) {
-    messages.invalidThemeId(envObj.theme_id, environment);
-    process.exit();
-  }
-
-  if (valid_id && typeof(valid_id) === "number") {
-    proxyTarget += `?preview_theme_id=${valid_id}`;
-  }
+  // break theme preview cache by always setting a preview parameter
+  let previewParam = (envObj.theme_id === "live") ? "" : envObj.theme_id;
+  proxyTarget += `?preview_theme_id=${previewParam}`;
 
   debug(proxyTarget);
 
