@@ -89,7 +89,6 @@ gulp.task('validate:id', () => {
   });
 
   return utils.promiseSeries(promises)
-    .then()
     .catch((result) => {
       // stop process to prevent deploy defaulting to published theme
       messages.invalidThemeId(result.themeId, result.environment);
