@@ -63,7 +63,8 @@ function validateId(settings) {
 /**
  * Validate the config.yml theme_id is an integer or "live"
  * @function validate:id
- *
+ * @memberof slate-cli.tasks.watch, slate-cli.tasks.deploy
+ * @private
  */
 
 gulp.task('validate:id', () => {
