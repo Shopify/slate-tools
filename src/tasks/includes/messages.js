@@ -74,9 +74,9 @@ const messages = {
   },
 
   invalidThemeId: (themeId, env) => {
-    gutil.log(`Invalid theme id for`,
+    gutil.log('Invalid theme id for',
       gutil.colors.cyan(`${env}: ${themeId}`),
-      gutil.colors.yellow(`\`theme_id\` must be an integer or "live".`)
+      gutil.colors.yellow('`theme_id` must be an integer or "live".'),
     );
   },
 

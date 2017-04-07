@@ -52,7 +52,7 @@ function validateId(settings) {
 
     const id = Number(settings.themeId);
 
-    if(isNaN(id)) {
+    if (isNaN(id)) {
       reject(settings);
     } else {
       resolve();
@@ -66,26 +66,26 @@ function validateId(settings) {
  *
  */
 
- gulp.task('validate:id', () => {
-   const file = fs.readFileSync(config.tkConfig, 'utf8');
-   const tkConfig = yaml.safeLoad(file);
-   let envObj;
+gulp.task('validate:id', () => {
+  const file = fs.readFileSync(config.tkConfig, 'utf8');
+  const tkConfig = yaml.safeLoad(file);
+  let envObj;
 
-   const environments = config.environment.split(/\s*,\s*|\s+/);
-   const promises = [];
+  const environments = config.environment.split(/\s*,\s*|\s+/);
+  const promises = [];
 
-   environments.forEach((environment) => {
-     function factory() {
-       envObj = tkConfig[environment];
-       let envSettings = {
-         'themeId' : envObj.theme_id,
-         environment
-       }
+  environments.forEach((environment) => {
+    function factory() {
+      envObj = tkConfig[environment];
+      const envSettings = {
+        themeId: envObj.theme_id,
+        environment,
+      };
 
-       return validateId(envSettings);
-     }
-     promises.push(factory);
-   });
+      return validateId(envSettings);
+    }
+    promises.push(factory);
+  });
 
   return utils.promiseSeries(promises)
     .then()
@@ -96,7 +96,7 @@ function validateId(settings) {
       return process.exit(exitCode);
     });
 
- });
+});
 
 /**
  * Replace your existing theme using ThemeKit.
