@@ -29,15 +29,14 @@ gulp.task('build:zip', (done) => {
 });
 
 /**
- * Does a rebuild of your theme's locale files and runs translation
- * tests on each file using @shopify/theme-lint
+ * Runs translation tests on each file using @shopify/theme-lint
  *
  * @function test
  * @memberof slate-cli.tasks
  * @static
  */
 gulp.task('test', (done) => {
-  runSequence('build:locales', 'lint:locales', done);
+  runSequence('lint:locales', done);
 });
 
 /**

@@ -23,7 +23,7 @@ export default class Reporter {
    * @param {String} message
    * @param {String} file
    */
-  failure(message, file) {
+  failure(message, file = null) {
     this.failures.push([message, file]);
   }
 

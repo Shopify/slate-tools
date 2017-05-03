@@ -85,6 +85,7 @@ function deploy(cmd, files, env) {
  */
 gulp.task('watch:src', [
   'watch:assets',
+  'watch:locales',
   'watch:config',
   'watch:svg',
   'watch:css',

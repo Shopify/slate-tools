@@ -1,32 +1,11 @@
 const gulp = require('gulp');
-const plumber = require('gulp-plumber');
-const size = require('gulp-size');
 const _ = require('lodash');
+const chokidar = require('chokidar');
 const registeredLinters = require('@shopify/theme-lint').linters;
 
 const config = require('./includes/config.js');
-const utils = require('./includes/utilities.js');
 const messages = require('./includes/messages.js');
 const Reporter = require('./includes/lint-reporter.js').default;
-
-/**
- * Copies locales to the `/dist/locales` directory
- *
- * @param {String} directory
- * @returns {Stream}
- * @private
- */
-function processLocales(directory) {
-  messages.logProcessFiles('build:locales');
-
-  return gulp.src(directory, {base: config.src.root})
-    .pipe(plumber(utils.errorHandler))
-    .pipe(size({
-      showFiles: true,
-      pretty: true,
-    }))
-    .pipe(gulp.dest(config.dist.root));
-}
 
 /**
  * Recursively loops over all translations and keeps track of successes
@@ -52,17 +31,6 @@ function lintLocales(directory, linters, reporter = new Reporter()) {
 }
 
 /**
- * Copies locales to the `/dist/locales` directory
- *
- * @function build:locales
- * @memberof slate-cli.tasks.build
- * @static
- */
-gulp.task('build:locales', () => {
-  return processLocales(config.src.locales);
-});
-
-/**
  * Runs translation tests using @shopify/theme-lint
  *
  * @function lint:locales
@@ -70,5 +38,21 @@ gulp.task('build:locales', () => {
  * @static
  */
 gulp.task('lint:locales', () => {
-  return lintLocales(config.dist.root, _.values(registeredLinters));
+  return lintLocales(config.src.root, _.values(registeredLinters));
 });
+
+/**
+ * Watches locales in the `/src` directory
+ *
+ * @function watch:locales
+ * @memberof slate-cli.tasks.watch
+ * @static
+ */
+gulp.task('watch:locales', () => {
+  chokidar.watch(config.src.locales, {ignoreInitial: true})
+    .on('all', (event, path) => {
+      messages.logFileEvent(event, path);
+      lintLocales(config.src.root, _.values(registeredLinters));
+    });
+});
+
