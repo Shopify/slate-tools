@@ -13,8 +13,8 @@ export default class Reporter {
    * @param {String} message
    * @param {String} file
    */
-  success(message, file = null) {
-    this.successes.push([message, file]);
+  success(message, file = null, index = null) {
+    this.successes.push([message, file, index]);
   }
 
   /**
@@ -23,8 +23,8 @@ export default class Reporter {
    * @param {String} message
    * @param {String} file
    */
-  failure(message, file = null) {
-    this.failures.push([message, file]);
+  failure(message, file = null, index = null) {
+    this.failures.push([message, file, index]);
   }
 
   /**
@@ -45,7 +45,7 @@ export default class Reporter {
 
       this.failures.forEach(([message, file]) => {
         gutil.log(gutil.colors.red(`${file}:`));
-        gutil.log(message.replace(/\n/g, ' '));
+        gutil.log(message);
       });
     }
   }
