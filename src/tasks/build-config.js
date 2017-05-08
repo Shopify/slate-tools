@@ -1,5 +1,4 @@
 const gulp = require('gulp');
-const fs = require('fs');
 const plumber = require('gulp-plumber');
 const size = require('gulp-size');
 const chokidar = require('chokidar');
