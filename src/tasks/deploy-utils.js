@@ -66,7 +66,6 @@ function validateId(settings) {
  * @memberof slate-cli.tasks.watch, slate-cli.tasks.deploy
  * @private
  */
-
 gulp.task('validate:id', () => {
   let file;
 
@@ -105,7 +104,6 @@ gulp.task('validate:id', () => {
       const exitCode = 2;
       return process.exit(exitCode);
     });
-
 });
 
 /**
