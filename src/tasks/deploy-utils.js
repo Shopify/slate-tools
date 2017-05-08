@@ -68,7 +68,17 @@ function validateId(settings) {
  */
 
 gulp.task('validate:id', () => {
-  const file = fs.readFileSync(config.tkConfig, 'utf8');
+  let file;
+
+  try {
+    file = fs.readFileSync(config.tkConfig, 'utf8');
+  } catch (err) {
+    messages.configError();
+
+    const exitCode = 2;
+    return process.exit(exitCode);
+  }
+
   const tkConfig = yaml.safeLoad(file);
   let envObj;
 
