@@ -1,4 +1,5 @@
 const gutil = require('gulp-util');
+const _ = require('lodash');
 
 /** Class representing a custom reporter for @shopify/theme-lint */
 export default class Reporter {
@@ -28,10 +29,10 @@ export default class Reporter {
   }
 
   /**
-   * Finalizes string output for translation tests
+   * Builds string output for translation tests
    * depending on successes and failures.
    */
-  finalize() {
+  output() {
     const testsRun = this.failures.length + this.successes.length;
 
     if (this.failures.length === 0) {
@@ -43,10 +44,17 @@ export default class Reporter {
         gutil.colors.red(`Failed (${testsRun} checks run)`),
       );
 
-      this.failures.forEach(([message, file]) => {
+      const failureGroups = _.groupBy(this.failures, (failure) => failure[1]);
+
+      _.forOwn(failureGroups, (failures, file) => {
         gutil.log(gutil.colors.red(`${file}:`));
-        gutil.log(message);
+
+        failures.map((failure) => {
+          return gutil.log(failure[0]);
+        });
       });
     }
+
+    this.successes = this.failures = [];
   }
 }
