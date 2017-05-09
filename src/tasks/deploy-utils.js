@@ -72,14 +72,14 @@ gulp.task('validate:id', () => {
   try {
     file = fs.readFileSync(config.tkConfig, 'utf8');
   } catch (err) {
-    if (err.code === 'ENOENT') {
-      messages.configError();
-
-      const exitCode = 2;
-      return process.exit(exitCode);
+    if (err.code !== 'ENOENT') {
+      throw new Error(err);
     }
 
-    throw new Error(err);
+    messages.configError();
+
+    const exitCode = 2;
+    return process.exit(exitCode);
   }
 
   const tkConfig = yaml.safeLoad(file);
