@@ -1,6 +1,5 @@
 const gulp = require('gulp');
 const cssimport = require('gulp-cssimport');
-const extReplace = require('gulp-ext-replace');
 const plumber = require('gulp-plumber');
 const chokidar = require('chokidar');
 
@@ -21,8 +20,6 @@ function processCss() {
   return gulp.src(config.roots.css)
     .pipe(plumber(utils.errorHandler))
     .pipe(cssimport())
-    .pipe(extReplace('.css.liquid', '.css'))
-    .pipe(extReplace('.scss.liquid', '.scss'))
     .pipe(gulp.dest(config.dist.assets));
 }
 
