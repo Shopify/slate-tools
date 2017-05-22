@@ -1,5 +1,28 @@
 # Change Log
 
+## [Unreleased](https://github.com/Shopify/slate-tools/tree/HEAD)
+
+[Full Changelog](https://github.com/Shopify/slate-tools/compare/v0.3.1...HEAD)
+
+**Closed issues:**
+
+- Error summary in build process [\#58](https://github.com/Shopify/slate-tools/issues/58)
+
+**Merged pull requests:**
+
+- Add error output at end of build and zip tasks [\#62](https://github.com/Shopify/slate-tools/pull/62) ([chrisberthe](https://github.com/chrisberthe))
+
+## [v0.3.1](https://github.com/Shopify/slate-tools/tree/v0.3.1) (2017-05-10)
+[Full Changelog](https://github.com/Shopify/slate-tools/compare/v0.3.0...v0.3.1)
+
+**Fixed bugs:**
+
+- Slate build errors when no config.yml file [\#45](https://github.com/Shopify/slate-tools/issues/45)
+
+**Merged pull requests:**
+
+- Remove error thrown when running slate build [\#59](https://github.com/Shopify/slate-tools/pull/59) ([chrisberthe](https://github.com/chrisberthe))
+
 ## [v0.3.0](https://github.com/Shopify/slate-tools/tree/v0.3.0) (2017-05-10)
 [Full Changelog](https://github.com/Shopify/slate-tools/compare/0.2.7...v0.3.0)
 
