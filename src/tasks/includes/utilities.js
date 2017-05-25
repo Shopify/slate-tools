@@ -65,21 +65,6 @@ const utilities = {
   },
 
   /**
-   * Checks whether the path is a directory
-   *
-   * @param path {String} - a string representing the path to a file
-   * @returns {boolean}
-   */
-  isDirectory: (path) => {
-    try {
-      // eslint-disable-next-line no-sync
-      return fs.statSync(path).isDirectory();
-    } catch (error) {
-      return false;
-    }
-  },
-
-  /**
    * Function passed to cheerio.run - adds aria tags & other accessibility
    * based information to each svg element's markup...
    *
