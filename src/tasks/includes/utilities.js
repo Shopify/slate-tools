@@ -1,5 +1,4 @@
 const gutil = require('gulp-util');
-const fs = require('fs');
 const _ = require('lodash');
 const Promise = require('bluebird');
 
