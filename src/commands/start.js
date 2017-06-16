@@ -15,7 +15,7 @@ export function start(options = {}) {
   }
 
   return spawn(config.gulp, args, {
-    detached: false,
+    detached: true,
     stdio: 'inherit',
   });
 }
