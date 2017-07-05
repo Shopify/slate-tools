@@ -12,9 +12,16 @@ const Reporter = require('./includes/lint-reporter.js').default;
  * @private
  */
 function lintLocales() {
-  return runAll(config.src.root, new Reporter()).then((reporter) => {
-    return reporter.output();
-  });
+  return runAll(config.src.root, new Reporter())
+    .then((reporter) => {
+      return reporter.output();
+    })
+    .catch((err) => {
+      console.log(err);
+
+      const exitCode = 2;
+      process.exit(exitCode);
+    });
 }
 
 /**

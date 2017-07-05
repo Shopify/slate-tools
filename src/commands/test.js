@@ -15,6 +15,13 @@ export default function(program) {
       spawn(config.gulp, ['test', '--gulpfile', config.gulpFile, '--cwd', config.themeRoot], {
         detached: false,
         stdio: 'inherit',
+      }).on('close', (code) => {
+        if (code === 0) {
+          return;
+        }
+
+        const exitCode = 2;
+        process.exit(exitCode);
       });
     });
 }
