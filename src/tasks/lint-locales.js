@@ -1,4 +1,5 @@
 const gulp = require('gulp');
+const gutil = require('gulp-util');
 const {runAll} = require('@shopify/theme-lint');
 
 const config = require('./includes/config.js');
@@ -17,7 +18,7 @@ function lintLocales() {
       return reporter.output();
     })
     .catch((err) => {
-      console.log(err);
+      gutil.log(err);
 
       const exitCode = 2;
       process.exit(exitCode);
