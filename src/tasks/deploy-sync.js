@@ -24,7 +24,6 @@ gulp.task('deploy:sync-init', () => {
   }
 
   const file = fs.readFileSync(config.tkConfig, 'utf8'); // eslint-disable-line no-sync
-  console.log(__dirname);
   const devScript = fs.readFileSync(path.join(__dirname, '/includes/dev-script.js'));
   const tkConfig = yaml.safeLoad(file);
   const queryStringComponents = [];
@@ -59,7 +58,9 @@ gulp.task('deploy:sync-init', () => {
       rule: {
         match: /<\/body>/i,
         fn: (snippet, match) => {
-          return `<script defer="defer">${devScript}</script>${snippet}${match}`;
+          return `<script defer="defer">${devScript}</script>
+                  ${snippet}
+                  ${match}`;
         },
       },
     },
