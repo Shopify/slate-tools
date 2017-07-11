@@ -14,14 +14,11 @@ const Reporter = require('./includes/lint-reporter.js').default;
  */
 function lintLocales() {
   return runAll(config.src.root, new Reporter())
-    .then((reporter) => {
-      return reporter.output();
-    })
+    .then((reporter) => reporter.output())
     .catch((err) => {
       gutil.log(err);
 
-      const exitCode = 2;
-      process.exit(exitCode);
+      process.exit(2);
     });
 }
 

@@ -16,12 +16,9 @@ export default function(program) {
         detached: false,
         stdio: 'inherit',
       }).on('close', (code) => {
-        if (code === 0) {
-          return;
-        }
+        if (code === 0) { return; }
 
-        const exitCode = 2;
-        process.exit(exitCode);
+        process.exit(2);
       });
     });
 }
