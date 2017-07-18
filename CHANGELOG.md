@@ -1,23 +1,27 @@
 # Change Log
 
-## [Unreleased](https://github.com/Shopify/slate-tools/tree/HEAD)
-
-[Full Changelog](https://github.com/Shopify/slate-tools/compare/v0.3.1...HEAD)
-
-**Closed issues:**
-
-- Error summary in build process [\#58](https://github.com/Shopify/slate-tools/issues/58)
+## [v0.3.3](https://github.com/Shopify/slate-tools/tree/v0.3.3) (2017-07-18)
+[Full Changelog](https://github.com/Shopify/slate-tools/compare/v0.3.2...v0.3.3)
 
 **Merged pull requests:**
 
+- allow certain npm files [\#76](https://github.com/Shopify/slate-tools/pull/76) ([NathanPJF](https://github.com/NathanPJF))
+- Add script that hides persists preview bar minimize [\#75](https://github.com/Shopify/slate-tools/pull/75) ([t-kelly](https://github.com/t-kelly))
+- Circle CI error handling in test.js [\#73](https://github.com/Shopify/slate-tools/pull/73) ([chrisberthe](https://github.com/chrisberthe))
+
+## [v0.3.2](https://github.com/Shopify/slate-tools/tree/v0.3.2) (2017-07-05)
+[Full Changelog](https://github.com/Shopify/slate-tools/compare/v0.3.1...v0.3.2)
+
+**Merged pull requests:**
+
+- Fix slate test command passing on Circle CI [\#72](https://github.com/Shopify/slate-tools/pull/72) ([chrisberthe](https://github.com/chrisberthe))
+- Upgrade require-dir to 0.3.2 [\#66](https://github.com/Shopify/slate-tools/pull/66) ([alistairholt](https://github.com/alistairholt))
+- Remove isDirectory function [\#65](https://github.com/Shopify/slate-tools/pull/65) ([chrisberthe](https://github.com/chrisberthe))
 - Add error output at end of build and zip tasks [\#62](https://github.com/Shopify/slate-tools/pull/62) ([chrisberthe](https://github.com/chrisberthe))
+- Add changelog [\#61](https://github.com/Shopify/slate-tools/pull/61) ([NathanPJF](https://github.com/NathanPJF))
 
 ## [v0.3.1](https://github.com/Shopify/slate-tools/tree/v0.3.1) (2017-05-10)
 [Full Changelog](https://github.com/Shopify/slate-tools/compare/v0.3.0...v0.3.1)
-
-**Fixed bugs:**
-
-- Slate build errors when no config.yml file [\#45](https://github.com/Shopify/slate-tools/issues/45)
 
 **Merged pull requests:**
 
@@ -26,18 +30,10 @@
 ## [v0.3.0](https://github.com/Shopify/slate-tools/tree/v0.3.0) (2017-05-10)
 [Full Changelog](https://github.com/Shopify/slate-tools/compare/0.2.7...v0.3.0)
 
-**Implemented enhancements:**
-
-- Add Circle Ci tests [\#53](https://github.com/Shopify/slate-tools/issues/53)
-- Add slate test command [\#55](https://github.com/Shopify/slate-tools/pull/55) ([chrisberthe](https://github.com/chrisberthe))
-
-**Closed issues:**
-
-- Theme translation tests [\#5](https://github.com/Shopify/slate-tools/issues/5)
-
 **Merged pull requests:**
 
 - Add Circle CI [\#56](https://github.com/Shopify/slate-tools/pull/56) ([chrisberthe](https://github.com/chrisberthe))
+- Add slate test command [\#55](https://github.com/Shopify/slate-tools/pull/55) ([chrisberthe](https://github.com/chrisberthe))
 
 ## [0.2.7](https://github.com/Shopify/slate-tools/tree/0.2.7) (2017-04-07)
 [Full Changelog](https://github.com/Shopify/slate-tools/compare/v0.2.7...0.2.7)
@@ -48,10 +44,6 @@
 
 ## [v0.2.7](https://github.com/Shopify/slate-tools/tree/v0.2.7) (2017-04-07)
 [Full Changelog](https://github.com/Shopify/slate-tools/compare/v0.2.6...v0.2.7)
-
-**Closed issues:**
-
-- Warning with latest version of Node 7.0.0 [\#18](https://github.com/Shopify/slate-tools/issues/18)
 
 **Merged pull requests:**
 
@@ -65,21 +57,8 @@
 ## [v0.2.6](https://github.com/Shopify/slate-tools/tree/v0.2.6) (2017-03-07)
 [Full Changelog](https://github.com/Shopify/slate-tools/compare/v0.2.5...v0.2.6)
 
-**Closed issues:**
-
-- Errors when watching prevents subsequent deploys [\#35](https://github.com/Shopify/slate-tools/issues/35)
-- Timeout behaviour [\#34](https://github.com/Shopify/slate-tools/issues/34)
-- Ignore files stops deploys [\#33](https://github.com/Shopify/slate-tools/issues/33)
-
 ## [v0.2.5](https://github.com/Shopify/slate-tools/tree/v0.2.5) (2017-01-30)
 [Full Changelog](https://github.com/Shopify/slate-tools/compare/v0.2.4...v0.2.5)
-
-**Closed issues:**
-
-- payment icons for screenreader [\#44](https://github.com/Shopify/slate-tools/issues/44)
-- Top level CSS files [\#38](https://github.com/Shopify/slate-tools/issues/38)
-- section file uploads in 0.2.4 [\#37](https://github.com/Shopify/slate-tools/issues/37)
-- Triggering build:css while watching [\#36](https://github.com/Shopify/slate-tools/issues/36)
 
 **Merged pull requests:**
 
@@ -116,12 +95,6 @@
 - Switch options from environment to env [\#28](https://github.com/Shopify/slate-tools/pull/28) ([macdonaldr93](https://github.com/macdonaldr93))
 
 ## [v0.2.0](https://github.com/Shopify/slate-tools/tree/v0.2.0) (2016-11-22)
-**Closed issues:**
-
-- Update to new sass-lint [\#19](https://github.com/Shopify/slate-tools/issues/19)
-- slate zip does not open /themes admin page [\#13](https://github.com/Shopify/slate-tools/issues/13)
-- Allow config to be specified at theme level [\#4](https://github.com/Shopify/slate-tools/issues/4)
-
 **Merged pull requests:**
 
 - updates dependencies [\#27](https://github.com/Shopify/slate-tools/pull/27) ([stevebosworth](https://github.com/stevebosworth))
